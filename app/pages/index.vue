@@ -10,23 +10,21 @@ const addNote = () => {
 </script>
 
 <template>
-  <div>
-    <div
-      v-for="(note, noteIndex) of noteStore.notes"
-      :key="`noteItem-${noteIndex}`"
+  <div
+    v-for="(note, noteIndex) of noteStore.notes"
+    :key="`noteItem-${noteIndex}`"
+  >
+    {{  note.name }}
+
+    <div 
+      v-for="(task, taskIndex) of note.tasks"
+      :key="`taskItem-${noteIndex}-${taskIndex}`"
     >
-      {{  note.name }}
-
-      <div 
-        v-for="(task, taskIndex) of note.tasks"
-        :key="`taskItem-${noteIndex}-${taskIndex}`"
-      >
-        {{ task.checked }} {{ task.name }}
-      </div>
+      {{ task.checked }} {{ task.name }}
     </div>
-
-    <button @click="addNote">Add note</button>
   </div>
+
+  <button @click="addNote">Add note</button>
 </template>
 
 <style lang="scss" scoped>
