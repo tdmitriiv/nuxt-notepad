@@ -1,17 +1,12 @@
 <script setup lang="ts">
-const noteStore = useNoteStore()
+import useNotes from '~/composables/useNotes'
 
-const addNote = () => {
-  noteStore.addNote({
-    name: `Заментка ${noteStore.notes.length + 1}`,
-    tasks: []
-  })
-}
+const { notes, addNote } = useNotes()
 </script>
 
 <template>
   <div
-    v-for="(note, noteIndex) of noteStore.notes"
+    v-for="(note, noteIndex) of notes"
     :key="`noteItem-${noteIndex}`"
   >
     {{  note.name }}
