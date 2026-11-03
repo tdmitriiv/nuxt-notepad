@@ -4,6 +4,7 @@ export type NoteTask = {
 }
 
 export type NoteItem = {
+  id: string
   name: string
   tasks: NoteTask[]
 }

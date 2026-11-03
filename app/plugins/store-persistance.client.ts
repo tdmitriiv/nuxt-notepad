@@ -26,6 +26,10 @@ export default defineNuxtPlugin(({ $pinia, hook }) => {
       } catch {
         localStorage.removeItem(storePiniaKey)
       }
+
+      if ('hydrated' in store.$state) {
+        store.hydrated = true
+      }
     }
   })
 })

@@ -1,25 +1,16 @@
 <script setup lang="ts">
+import NoteCard from '~/components/NoteCard.vue';
 import useNotes from '~/composables/useNotes'
 
-const { notes, addNote } = useNotes()
+const { notes } = useNotes()
 </script>
 
 <template>
-  <div
+  <NoteCard
     v-for="(note, noteIndex) of notes"
     :key="`noteItem-${noteIndex}`"
-  >
-    {{  note.name }}
-
-    <div 
-      v-for="(task, taskIndex) of note.tasks"
-      :key="`taskItem-${noteIndex}-${taskIndex}`"
-    >
-      {{ task.checked }} {{ task.name }}
-    </div>
-  </div>
-
-  <button @click="addNote">Add note</button>
+    :note="note"
+  />
 </template>
 
 <style lang="scss" scoped>

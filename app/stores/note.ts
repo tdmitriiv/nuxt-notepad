@@ -1,43 +1,10 @@
 export const useNoteStore = defineStore('notes', {
   state: (): {
     notes: NoteItem[]
+    hydrated: boolean
   } => ({
-    notes: [
-      {
-        name: 'Заметка 1',
-        tasks: [
-          {
-            name: 'задача 1',
-            checked: false
-          },
-          {
-            name: 'задача 2',
-            checked: false
-          },
-          {
-            name: 'задача 3',
-            checked: false
-          }
-        ]
-      },
-      {
-        name: 'Заметка 2',
-        tasks: [
-          {
-            name: 'задача 2 1',
-            checked: false
-          },
-          {
-            name: 'задача 2 2',
-            checked: false
-          },
-          {
-            name: 'задача 2 3',
-            checked: false
-          }
-        ]
-      }
-    ]
+    notes: [],
+    hydrated: false
   }),
   actions: {
     setNotes (notes: NoteItem[]) {
