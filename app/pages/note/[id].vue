@@ -29,7 +29,7 @@
       v-for="(task, index) of note.tasks"
       :key="`task-${index}`"
     >
-      <input type="checkbox" :checked="task.checked" @input="checkTask(task, $event)">
+      <input :id="`task-${index}`" type="checkbox" :checked="task.checked" @input="checkTask(task, $event)">
 
       {{ task.name }}
     </div>
