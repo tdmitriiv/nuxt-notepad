@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ContentEditable from '~/components/UI/ContentEditable.vue'
+import Checkbox from '~/components/UI/Checkbox.vue'
 
 const { note } = defineProps<{
   note?: NoteItem
@@ -17,10 +18,6 @@ const noteForm = ref<NoteItem>({
 
 if (note) {
   noteForm.value = note
-}
-
-const checkTask = (task: NoteTask, event: Event) => {
-  task.checked = (event.target as HTMLInputElement).checked
 }
 
 const addTask = (index?: number) => {
@@ -55,12 +52,10 @@ const deleteTask = (index: number) => {
       :key="`task-${task.id}`"
       class="noteForm__task"
     >
-      <input 
+      <Checkbox
+        v-model="task.checked"
         :id="`task-${task.id}`"
-        :checked="task.checked"
-        type="checkbox"
-        @input="checkTask(task, $event)"
-      >
+      />
 
       <ContentEditable
         v-model="task.name"
