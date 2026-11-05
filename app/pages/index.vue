@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NoteCard from '~/components/NoteCard.vue'
+import Btn from '~/components/UI/Btn.vue'
 import useNotes from '~/composables/useNotes'
 
 const { notes } = useNotes()
@@ -18,11 +19,11 @@ const showAddModal = () => {
     :note="note"
   />
 
-  <button @click="showAddModal">
+  <Btn @click="showAddModal">
     <Icon name="pixelarticons:notes-plus"/>
     
     Новая заметка
-  </button>
+  </Btn>
 
   <LazyNoteAddModal 
     v-if="isAddShown"
