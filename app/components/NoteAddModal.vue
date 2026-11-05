@@ -2,7 +2,13 @@
 import Modal from '~/components/UI/Modal.vue'
 
 const isOpen = defineModel<boolean>({ required: true })
-  
+
+const { addNote } = useNotes()
+
+const submitNote = (note: NoteItem) => {
+  addNote(note)
+  isOpen.value = false
+}
 </script>
 
 <template>
@@ -10,9 +16,7 @@ const isOpen = defineModel<boolean>({ required: true })
     v-model="isOpen"
     title="Новая заметка"
   >
-    <div>
-      Тело новой заметки
-    </div>
+    <NoteForm @submit="submitNote" />
   </Modal>
 </template>
 

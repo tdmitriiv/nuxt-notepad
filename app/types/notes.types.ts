@@ -1,4 +1,5 @@
 export type NoteTask = {
+  id: string
   name: string
   checked: boolean
 }
