@@ -8,6 +8,8 @@ const { note } = defineProps<{
 
 const emit = defineEmits<{
   submit: [value: NoteItem]
+  cancel: void
+  delete: [value: NoteItem]
 }>()
 
 const noteForm = ref<NoteItem>({
@@ -19,6 +21,8 @@ const noteForm = ref<NoteItem>({
 if (note) {
   noteForm.value = note
 }
+
+const isEdit = computed(() => Boolean(note))
 
 const addTask = (index?: number) => {
   const newTask: NoteTask = {
@@ -75,17 +79,33 @@ const deleteTask = (index: number) => {
       />
     </div>
 
-    <button 
+    <button
       @click="addTask"
     >
       Новая задача
     </button>
 
-    <button
-      @click="emit('submit', noteForm)"
-    >
-      {{ note ? 'Изменить' : 'Добавить' }}
-    </button>
+    <div>
+      <button
+        @click="emit('submit', noteForm)"
+      >
+        {{ isEdit ? 'Изменить' : 'Добавить' }}
+      </button>
+
+      <button
+        v-show="isEdit"
+        @click="emit('delete', noteForm)"
+      >
+        Удалить
+      </button>
+
+      <button
+        v-show="isEdit"
+        @click="emit('cancel')"
+      >
+        Отменить
+      </button>
+    </div>
   </div>
 </template>
 

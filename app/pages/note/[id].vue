@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ContentEditable from '~/components/UI/ContentEditable.vue'
-
 const { fetchNote, editNote, deleteNote } = useNotes()
 const route = useRoute()
 const router = useRouter()
@@ -16,13 +14,23 @@ if (!note.value) {
   })
 }
 
+const onUpdate = (note: NoteItem) => {
+  editNote(note)
+  router.push('/')
+}
+
+const onDelete = (note: NoteItem) => {
+  deleteNote(note)
+  router.push('/')
+}
+
+const onCancel = () => {
+  router.push('/')
+}
+
 useHead({
   title: note.value.name
 })
-
-const checkTask = (task: NoteTask, event: Event) => {
-  task.checked = (event.target as HTMLInputElement).checked
-}
 </script>
 
 <template>
@@ -30,33 +38,12 @@ const checkTask = (task: NoteTask, event: Event) => {
     v-if="note"
     class="note"
   >
-    <ContentEditable
-      v-model="note.name"
+    <NoteForm 
+      :note="note"
+      @submit="onUpdate"
+      @delete="onDelete"
+      @cancel="onCancel"
     />
-
-    <div 
-      v-for="(task, index) of note.tasks"
-      :key="`task-${index}`"
-      class="note__list"
-    >
-      <input :id="`task-${index}`" type="checkbox" :checked="task.checked" @input="checkTask(task, $event)">
-
-      <ContentEditable
-        v-model="task.name"
-      />
-    </div>
-
-    <button @click="editNote(note)">
-      Сохранить
-    </button>
-
-    <button @click="deleteNote(note)">
-      Удалить
-    </button>
-
-    <button @click="router.push('/')">
-      Отменить
-    </button>
   </div>
 </template>
 
