@@ -2,20 +2,12 @@
 const { note } = defineProps<{
   note: NoteItem
 }>()
-
-
-const addTask = () => {
-  note.tasks.push({
-    name: 'Задача' + (note.tasks.length + 1),
-    checked: false
-  })
-}
 </script>
 
 <template>
   <div>
     <NuxtLink :to="`/note/${note.id}`">
-      {{  note.name }}
+      {{ note.name }}
     </NuxtLink>
 
     <div 
@@ -26,8 +18,6 @@ const addTask = () => {
       
       {{ task.name }}
     </div>
-
-    <button @click="addTask">Add task</button>
   </div>
 </template>
 
