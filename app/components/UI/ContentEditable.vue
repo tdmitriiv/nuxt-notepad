@@ -57,10 +57,24 @@
   <div
     ref="editor"
     :contenteditable="contenteditableType"
+    class="contentEditable"
     @input="onInput"
   />
 </template>
 
 <style lang="sass" scoped>
+.contentEditable
+  width: 100%
+  padding: 5px 0
+  border: 1px solid var(--color-bg)
+  outline: none
+  white-space: pre-wrap
 
+  &:focus
+    border-bottom-color: var(--color-border)
+
+  &[placeholder]:empty:not(:focus)::before
+    content: attr(placeholder)
+    color: var(--color-muted)
+    pointer-events: none
 </style>

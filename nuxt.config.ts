@@ -5,5 +5,18 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   routeRules: {
     '/note/**': { ssr: false }
+  },
+  css: [
+    'normalize.css/normalize.css',
+    '~/assets/styles/index.sass'
+  ],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          additionalData: '@use "~/assets/styles/variables/_index.sass" as *\n',
+        }
+      }
+    }
   }
 })
