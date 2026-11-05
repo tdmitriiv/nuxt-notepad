@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppIcon from '~/components/UI/AppIcon.vue'
 const checked = defineModel<boolean>({ required: true, default: false })
 
 const { id } = defineProps<{
@@ -17,20 +18,21 @@ const toggleCheck = () => {
         'checkbox--checked': checked
       }
     ]"
-    @click="toggleCheck"
   >
     <input
       :checked="checked"
       :id="id"
       type="checkbox"
     >
-    <Icon 
+    <AppIcon
       name="pixelarticons:checkbox-on"
       class="checkbox__on"
+      @click="toggleCheck"
     />
-    <Icon 
+    <AppIcon
       name="pixelarticons:checkbox"
       class="checkbox__off"
+      @click="toggleCheck"
     />
   </span>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ContentEditable from '~/components/UI/ContentEditable.vue'
 import Checkbox from '~/components/UI/Checkbox.vue'
+import AppIcon from '~/components/UI/AppIcon.vue'
 
 const { note } = defineProps<{
   note?: NoteItem
@@ -66,13 +67,13 @@ const deleteTask = (index: number) => {
         placeholder="Задача"
       />
 
-      <Icon 
+      <AppIcon 
         name="pixelarticons:trash"
         class="noteForm__delete"
         @click="deleteTask(index)"
       />
 
-      <Icon 
+      <AppIcon 
         name="pixelarticons:plus"
         class="noteForm__add"
         @click="addTask(index)"
