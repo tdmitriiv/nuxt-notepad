@@ -17,9 +17,15 @@ importers:
       '@vueuse/core':
         specifier: ^15.0.0
         version: 15.0.0(vue@3.5.44)
+      '@vueuse/integrations':
+        specifier: ^15.0.0
+        version: 15.0.0(focus-trap@7.8.0)(vue@3.5.44)
       '@vueuse/nuxt':
         specifier: ^15.0.0
         version: 15.0.0(@nuxt/schema@4.6.3)(confbox@0.3.2)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(magic-string@1.4.5)(mlly@1.8.2)(nuxt@4.6.3(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7))(@oxc-project/types@0.156.0)(@parcel/watcher@2.6.0)(@vue/compiler-sfc@3.5.44)(acorn@8.19.0)(confbox@0.3.2)(db0@0.3.4)(dotenv@17.4.2)(esbuild@0.28.2)(giget@3.3.1)(ioredis@5.11.1)(lightningcss@1.33.0)(mlly@1.8.2)(pinia@4.1.0(@vue/devtools-api@8.2.1)(vue@3.5.44))(rolldown@1.2.16)(rollup-plugin-visualizer@7.1.1(rolldown@1.2.16)(rollup@4.67.4))(rollup@4.67.4)(sass@1.107.1)(srvx@1.0.8)(terser@5.51.2)(vite@8.3.5(esbuild@0.28.2)(jiti@2.7.0)(sass@1.107.1)(terser@5.51.2)))(rolldown@1.2.16)(unplugin@3.7.0(esbuild@0.28.2)(rolldown@1.2.16)(rollup@4.67.4)(vite@8.3.5(esbuild@0.28.2)(jiti@2.7.0)(sass@1.107.1)(terser@5.51.2)))(vue@3.5.44)
+      focus-trap:
+        specifier: ^7.8.0
+        version: 7.8.0
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -1147,6 +1153,49 @@ packages:
     peerDependencies:
       vue: ^3.5.0
 
+  '@vueuse/integrations@15.0.0':
+    resolution: {integrity: sha512-uWC1608pEocJPeRk1IqrEA3uYHhAGTJNibcMAdxgdK2Sy2Hypc6b+VdNO9KekCxyPc4VXK8SKDp8vsXefR/ZFg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      async-validator: ^4
+      axios: ^1
+      change-case: ^5
+      drauu: ^1 || ^0.4
+      focus-trap: ^7 || ^8
+      fuse.js: ^7
+      idb-keyval: ^6
+      jwt-decode: ^4
+      nprogress: ^0.2
+      qrcode: ^1.5
+      sortablejs: ^1
+      universal-cookie: ^7 || ^8
+      vue: ^3.5.0
+    peerDependenciesMeta:
+      async-validator:
+        optional: true
+      axios:
+        optional: true
+      change-case:
+        optional: true
+      drauu:
+        optional: true
+      focus-trap:
+        optional: true
+      fuse.js:
+        optional: true
+      idb-keyval:
+        optional: true
+      jwt-decode:
+        optional: true
+      nprogress:
+        optional: true
+      qrcode:
+        optional: true
+      sortablejs:
+        optional: true
+      universal-cookie:
+        optional: true
+
   '@vueuse/metadata@15.0.0':
     resolution: {integrity: sha512-sfWE5LADAKJ0KnjtGliMdSN8Ij/L7uP6rXIZlgPloAI4zvvefbw6H5Lt7KJA6RqQOYgVqWF5Guj50HHMIzygBg==}
     engines: {node: '>=22'}
@@ -1696,6 +1745,9 @@ packages:
 
   fnv1a-64@0.1.2:
     resolution: {integrity: sha512-mJbcILTPybAR1jdOwt/lVv8N2cffeJFFP+gVbSAwLEx1ujXH27RpPd8Rokec/KX9c76UYIB6Co+H4lQzxPnJfA==}
+
+  focus-trap@7.8.0:
+    resolution: {integrity: sha512-/yNdlIkpWbM0ptxno3ONTuf+2g318kh2ez3KSeZN5dZ8YC6AAmgeWz+GasYYiBJPFaYcSAPeu4GfhUaChzIJXA==}
 
   foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
@@ -2635,6 +2687,9 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  tabbable@6.5.1:
+    resolution: {integrity: sha512-dMCuwDUY6Noz3zVKLefBC4wq+aJV20yc7vWmM7uTNGwtQSFF5kX7OUIUsxuVajz/bdt5Xqdah3/0NLjth+cM5A==}
 
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
@@ -4429,6 +4484,14 @@ snapshots:
       '@vueuse/shared': 15.0.0(vue@3.5.44)
       vue: 3.5.44
 
+  '@vueuse/integrations@15.0.0(focus-trap@7.8.0)(vue@3.5.44)':
+    dependencies:
+      '@vueuse/core': 15.0.0(vue@3.5.44)
+      '@vueuse/shared': 15.0.0(vue@3.5.44)
+      vue: 3.5.44
+    optionalDependencies:
+      focus-trap: 7.8.0
+
   '@vueuse/metadata@15.0.0': {}
 
   '@vueuse/nuxt@15.0.0(@nuxt/schema@4.6.3)(confbox@0.3.2)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(magic-string@1.4.5)(mlly@1.8.2)(nuxt@4.6.3(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7))(@oxc-project/types@0.156.0)(@parcel/watcher@2.6.0)(@vue/compiler-sfc@3.5.44)(acorn@8.19.0)(confbox@0.3.2)(db0@0.3.4)(dotenv@17.4.2)(esbuild@0.28.2)(giget@3.3.1)(ioredis@5.11.1)(lightningcss@1.33.0)(mlly@1.8.2)(pinia@4.1.0(@vue/devtools-api@8.2.1)(vue@3.5.44))(rolldown@1.2.16)(rollup-plugin-visualizer@7.1.1(rolldown@1.2.16)(rollup@4.67.4))(rollup@4.67.4)(sass@1.107.1)(srvx@1.0.8)(terser@5.51.2)(vite@8.3.5(esbuild@0.28.2)(jiti@2.7.0)(sass@1.107.1)(terser@5.51.2)))(rolldown@1.2.16)(unplugin@3.7.0(esbuild@0.28.2)(rolldown@1.2.16)(rollup@4.67.4)(vite@8.3.5(esbuild@0.28.2)(jiti@2.7.0)(sass@1.107.1)(terser@5.51.2)))(vue@3.5.44)':
@@ -4919,6 +4982,10 @@ snapshots:
   flru@1.0.2: {}
 
   fnv1a-64@0.1.2: {}
+
+  focus-trap@7.8.0:
+    dependencies:
+      tabbable: 6.5.1
 
   foreground-child@3.3.1:
     dependencies:
@@ -6047,6 +6114,8 @@ snapshots:
   supports-color@10.2.2: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  tabbable@6.5.1: {}
 
   tagged-tag@1.0.0: {}
 

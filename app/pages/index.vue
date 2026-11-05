@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import NoteCard from '~/components/NoteCard.vue';
+import NoteCard from '~/components/NoteCard.vue'
 import useNotes from '~/composables/useNotes'
 
 const { notes } = useNotes()
 
-const isAddShown = shallowRef(true)
+const isAddShown = shallowRef(false)
 
 const showAddModal = () => {
   isAddShown.value = true
@@ -24,7 +24,10 @@ const showAddModal = () => {
     Новая заметка
   </button>
 
-  <LazyNoteAddModal v-model="isAddShown" />
+  <LazyNoteAddModal 
+    v-if="isAddShown"
+    v-model="isAddShown"
+  />
 </template>
 
 <style lang="scss" scoped>

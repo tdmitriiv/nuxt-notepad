@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+
 const { title } = defineProps<{
   modelValue: boolean
   title?: string
@@ -8,10 +10,25 @@ const isOpen = defineModel<boolean>({ default: true })
 
 const emit = defineEmits(['close']);
 
+const modalRef = useTemplateRef('modal')
+const { activate, deactivate } = useFocusTrap(modalRef, { immediate: false })
+
+onMounted(async () => {
+  console.log('onMounted')
+  await nextTick()
+  activate()
+})
+
+onBeforeUnmount(() => {
+  deactivate()
+})
+
 const close = () => {
   isOpen.value = false
   emit('close')
 }
+
+onKeyStroke('Escape', close)
 </script>
 
 <template>
@@ -19,10 +36,14 @@ const close = () => {
     <Transition name="fade">
       <div
         v-if="isOpen"
+        ref="modal"
         class="modal"
         @click.stop="close"
       >
-        <div class="modal__content" @click.stop>
+        <div
+          class="modal__content" 
+          @click.stop
+        >
           <slot name="header">
             <h3>
               {{ title }}
