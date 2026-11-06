@@ -2,6 +2,7 @@
 import ContentEditable from '~/components/UI/ContentEditable.vue'
 import Checkbox from '~/components/UI/Checkbox.vue'
 import AppIcon from '~/components/UI/AppIcon.vue'
+import Btn from '~/components/UI/Btn.vue'
 
 const { note } = defineProps<{
   note?: NoteItem
@@ -13,36 +14,28 @@ const emit = defineEmits<{
   delete: [value: NoteItem]
 }>()
 
-const noteForm = ref<NoteItem>({
-  id: getId('note'),
-  name: '',
-  tasks: []
-})
-
-if (note) {
-  noteForm.value = note
-}
+const noteForm = ref<NoteItem>(note
+  ? note
+  : {
+    id: getId('note'),
+    name: '',
+    tasks: []
+  }
+)
 
 const isEdit = computed(() => Boolean(note))
 
-const addTask = (index?: number) => {
-  const newTask: NoteTask = {
-    id: getId('task'),
-    checked: false,
-    name: ''
-  }
-
-  if (typeof index === 'number') {
-    noteForm.value.tasks.splice(index + 1, 0, newTask)
-  } else {
-    noteForm.value.tasks.push(newTask)
-  }
-}
-
-const deleteTask = (index: number) => {
-  noteForm.value.tasks.splice(index, 1)
-} 
-
+const {
+  tasks,
+  addTask,
+  deleteTask,
+  updateTask,
+  toggleTask,
+  undoHistory,
+  redoHistory,
+  undo,
+  redo
+} = useNoteTasks(noteForm)
 </script>
 
 <template>
@@ -53,18 +46,20 @@ const deleteTask = (index: number) => {
     />
 
     <div 
-      v-for="(task, index) of noteForm.tasks"
+      v-for="(task, index) of tasks"
       :key="`task-${task.id}`"
       class="noteForm__task"
     >
       <Checkbox
-        v-model="task.checked"
+        :model-value="task.checked"
         :id="`task-${task.id}`"
+        @update:model-value="toggleTask($event, index)"
       />
 
       <ContentEditable
-        v-model="task.name"
+        :model-value="task.name"
         placeholder="Задача"
+        @update:model-value="updateTask($event, index)"
       />
 
       <AppIcon 
@@ -80,32 +75,52 @@ const deleteTask = (index: number) => {
       />
     </div>
 
-    <button
-      @click="addTask"
+    <Btn
+      @click="addTask()"
     >
       Новая задача
-    </button>
+    </Btn>
 
     <div>
-      <button
+      <Btn
         @click="emit('submit', noteForm)"
       >
         {{ isEdit ? 'Изменить' : 'Добавить' }}
-      </button>
+      </Btn>
 
-      <button
+      <Btn
         v-show="isEdit"
         @click="emit('delete', noteForm)"
       >
         Удалить
-      </button>
+      </Btn>
 
-      <button
+      <Btn
         v-show="isEdit"
         @click="emit('cancel')"
       >
         Отменить
-      </button>
+      </Btn>
+    </div>
+
+    <Btn
+      @click="undo"
+    >
+      undo
+    </Btn>
+
+    <Btn
+      @click="redo"
+    >
+      redo
+    </Btn>
+    <div style="flex">
+      <pre>
+        {{ undoHistory }}
+      </pre>
+      <pre>
+        {{ redoHistory }}
+      </pre>
     </div>
   </div>
 </template>

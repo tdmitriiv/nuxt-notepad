@@ -42,7 +42,7 @@ export type HistoryItem = {
 }
 
 export default function useTaskHistory (
-  target: Ref<NoteTask[]>
+  tasks: Ref<NoteTask[]>
 ) {
   const undoHistory = shallowRef<HistoryItem[]>([])
   const redoHistory = shallowRef<HistoryItem[]>([])
@@ -50,44 +50,53 @@ export default function useTaskHistory (
   const execute = (command: TaskCommand, history = undoHistory) => {
     switch (command.type) {
       case 'add': {
-        const addIndex = command.params.index ?? target.value.length
-        target.value.splice(addIndex, 0, command.params.value)
+        const addIndex = command.params.index ?? tasks.value.length
+        tasks.value.splice(addIndex, 0, command.params.value)
         history.value.push({
           type: command.type,
           index: addIndex,
-          value: command.params.value
+          value: { ...command.params.value }
         })
         break
       }
         
       case 'delete': {
-        const { index } = command.params
-        const task = target.value[index]
+        const task = tasks.value[command.params.index]
         if (!task) return
 
-        target.value.splice(index, 1)
+        tasks.value.splice(command.params.index, 1)
         history.value.push({
           type: command.type,
-          index,
-          value: task,
+          index: command.params.index,
+          value: { ...task },
         })
         break
       }
         
       case 'toggle':
-        break
-      case 'change': {
-        const task = target.value[command.params.index]
+        const task = tasks.value[command.params.index]
         if (!task) return
 
-        target.value[command.params.index] = {
-          ...task,
-          name: command.params.value
-        }
+        const previousTask = { ...task }
+        task.checked = command.params.value
         history.value.push({
-          type: 'change',
+          type: command.type,
           index: command.params.index,
-          value: task
+          value: previousTask
+        })
+        break
+      case 'change': {
+        const task = tasks.value[command.params.index]
+        if (!task) return
+
+        const previousTask = { ...task }
+
+        task.name = command.params.value
+
+        history.value.push({
+          type: command.type,
+          index: command.params.index,
+          value: previousTask
         })
         break
       }
@@ -120,6 +129,13 @@ export default function useTaskHistory (
         break
       }
       case 'toggle':
+        execute({
+          type: 'toggle',
+          params: {
+            value: command.value.checked,
+            index: command.index
+          }
+        }, toHistory)
         break
       case 'change':
         execute({
