@@ -101,26 +101,31 @@ const {
       >
         Отменить
       </Btn>
-    </div>
 
-    <Btn
+      <Btn
+      v-show="isEdit"
       @click="undo"
     >
       undo
     </Btn>
 
     <Btn
+      v-show="isEdit"
       @click="redo"
     >
       redo
     </Btn>
-    <div style="flex">
+    <div 
+      v-show="isEdit"
+      style="flex"
+    >
       <pre>
         {{ undoHistory }}
       </pre>
       <pre>
         {{ redoHistory }}
       </pre>
+    </div>
     </div>
   </div>
 </template>
