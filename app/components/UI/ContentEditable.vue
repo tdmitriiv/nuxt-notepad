@@ -5,7 +5,6 @@
     disabled = false,
     type = 'text'
   } = defineProps<{
-    modelValue: string
     disabled?: boolean
     type?: 'text' | 'html'
   }>()
@@ -41,6 +40,10 @@
       : target.innerHTML
     model.value = value
   }
+
+  watch(model, (value) => {
+    update(value)
+  })
 
   onMounted (() => {
     update(model.value)
