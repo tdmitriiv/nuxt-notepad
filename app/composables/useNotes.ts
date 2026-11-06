@@ -19,8 +19,10 @@ export default function useNotes () {
   }
 
   const deleteNote = async (note: NoteItem) => {
-    await useConfirm('Подтвердите удаление?')
-    noteStore.deleteNote(note)
+    try {
+      await useConfirm('Подтвердите удаление?')
+      noteStore.deleteNote(note)
+    } catch {}
   }
 
   return {

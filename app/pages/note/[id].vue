@@ -27,8 +27,10 @@ const onDelete = async (note: NoteItem) => {
 }
 
 const onCancel = async () => {
-  await useConfirm('Подтвердить отмену?')
-  router.push('/')
+  try {
+    await useConfirm('Подтвердить отмену?')
+    router.push('/')
+  } catch {}
 }
 
 useHead({
