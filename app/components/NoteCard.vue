@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Checkbox from '~/components/UI/Checkbox.vue'
+
 const { note } = defineProps<{
   note: NoteItem
 }>()
@@ -14,7 +16,11 @@ const { note } = defineProps<{
       v-for="(task, taskIndex) of note.tasks"
       :key="`taskItem-${taskIndex}-${task.name}`"
     >
-      <input type="checkbox" :checked="task.checked">
+      <Checkbox 
+        type="checkbox"
+        :model-value="task.checked"
+        disabled
+      />
       
       {{ task.name }}
     </div>

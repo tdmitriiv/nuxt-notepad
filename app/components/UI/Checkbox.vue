@@ -2,11 +2,13 @@
 import AppIcon from '~/components/UI/AppIcon.vue'
 const checked = defineModel<boolean>({ required: true, default: false })
 
-const { id } = defineProps<{
+const { id, disabled = false } = defineProps<{
   id?: string
+  disabled?: boolean
 }>()
 
 const toggleCheck = () => {
+  if (disabled) { return }
   checked.value = !checked.value
 }
 </script>
@@ -15,7 +17,8 @@ const toggleCheck = () => {
   <span
     :class="[
       'checkbox', {
-        'checkbox--checked': checked
+        'checkbox--checked': checked,
+        'checkbox--disabled': disabled
       }
     ]"
   >
@@ -39,8 +42,14 @@ const toggleCheck = () => {
 
 <style lang="sass" scoped>
 .checkbox
+  width: 20px
+  height: 20px
+
   input
     display: none
+
+  &--disabled
+    color: var(--color-muted)
 
   &__on,
   &__off
