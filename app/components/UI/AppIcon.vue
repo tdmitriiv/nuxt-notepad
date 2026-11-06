@@ -4,10 +4,8 @@ const { name, size = 20 } = defineProps<{
   size?: string | number
 }>()
 
-const emit = defineEmits(['click'])
-
-const onEnter = () => {
-  emit('click')
+const onEnter = (event: Event) => {
+  (event.currentTarget as HTMLElement).click()
 }
 </script>
 
