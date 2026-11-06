@@ -14,11 +14,12 @@ export default function useNotes () {
     return ref(note ? structuredClone(toRaw(note)) : null)
   }
 
-  const editNote = (note: NoteItem) => {
+  const editNote = async (note: NoteItem) => {
     noteStore.saveNote(note)
   }
 
-  const deleteNote = (note: NoteItem) => {
+  const deleteNote = async (note: NoteItem) => {
+    await useConfirm('Подтвердите удаление?')
     noteStore.deleteNote(note)
   }
 
