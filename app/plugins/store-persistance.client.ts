@@ -1,4 +1,4 @@
-import type { PiniaPluginContext } from 'pinia'
+import { type PiniaPluginContext } from 'pinia'
 import { toRaw } from 'vue'
 
 const STORAGE_KEY = 'notes-store'
@@ -20,6 +20,18 @@ const persistancePlugin = ({ store }: PiniaPluginContext) => {
   })
 }
 
-export default defineNuxtPlugin(({ $pinia, hook }) => {
+export default defineNuxtPlugin(({ $pinia }) => {
   $pinia.use(persistancePlugin)
+
+  window.addEventListener('storage', (event) => {
+    if (!event.key || !event.key.startsWith(`${STORAGE_KEY}:`)) return
+
+    const storeKey = event.key.split(':')[1] || ''
+    const store = $pinia._s.get(storeKey)
+    if (!store || event.newValue === null) { return }
+    
+    try {
+      store.$patch(JSON.parse(event.newValue))
+    } catch {}
+  })
 })
