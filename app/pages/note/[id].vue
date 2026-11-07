@@ -22,8 +22,10 @@ const onUpdate = (note: NoteItem) => {
 }
 
 const onDelete = async (note: NoteItem) => {
-  await deleteNote(note)
-  router.push('/')
+  try {
+    await deleteNote(note)
+    router.push('/')
+  } catch {}
 }
 
 const onCancel = async () => {
