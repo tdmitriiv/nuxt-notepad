@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import AppIcon from '~/components/UI/AppIcon.vue'
 
 const { title } = defineProps<{
   modelValue: boolean
@@ -8,7 +9,7 @@ const { title } = defineProps<{
 
 const isOpen = defineModel<boolean>({ default: true })
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close'])
 
 const modalRef = useTemplateRef('modal')
 const { activate, deactivate } = useFocusTrap(modalRef, { immediate: false })
@@ -50,7 +51,7 @@ onKeyStroke('Escape', close)
           </slot>
           <slot />
 
-          <Icon 
+          <AppIcon 
             name="pixelarticons:close"
             class="modal__close"
             @click="close"
@@ -78,20 +79,12 @@ onKeyStroke('Escape', close)
     position: relative
     background: white
     padding: 20px
-    border: 1px solid #252525
+    border: 1px solid var(--color-border)
     border-radius: 2px
     min-width: 300px
-  
+
   &__close
     position: absolute
     top: 10px
     right: 10px
-
-.fade-enter-active,
-.fade-leave-active 
-  transition: opacity 0.3s ease
-
-.fade-enter-from,
-.fade-leave-to 
-  opacity: 0
 </style>

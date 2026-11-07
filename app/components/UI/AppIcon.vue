@@ -24,11 +24,12 @@ const onEnter = (event: Event) => {
 
 <style lang="sass" scoped>
 .icon
-  display: inline-flex
+  display: inline-block
+  cursor: pointer
 
   &:focus
     outline: none
 
-  &:focus span
-    background: green
+    > span
+      background: green
 </style>

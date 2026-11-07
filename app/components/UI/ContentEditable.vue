@@ -69,7 +69,7 @@
 .contentEditable
   width: 100%
   padding: 5px 0
-  border: 1px solid var(--color-bg)
+  border: 1px solid transparent
   outline: none
   white-space: pre-wrap
 

@@ -13,12 +13,22 @@ const showAddModal = () => {
 </script>
 
 <template>
+  <Btn
+    class="newNote"
+    title="Добавить заметку"
+    @click="showAddModal"
+  >
+    <Icon name="pixelarticons:notes-plus"/>
+  </Btn>
+
   <ClientOnly>
-    <NoteCard
-      v-for="(note, noteIndex) of notes"
-      :key="`noteItem-${noteIndex}`"
-      :note="note"
-    />
+    <div class="nodeList">
+      <NoteCard
+        v-for="(note, noteIndex) of notes"
+        :key="`noteItem-${noteIndex}`"
+        :note="note"
+      />
+    </div>
 
     <template #fallback>
       <div class="skeleton-wrapper">
@@ -27,18 +37,26 @@ const showAddModal = () => {
     </template>
   </ClientOnly>
 
-  <Btn @click="showAddModal">
-    <Icon name="pixelarticons:notes-plus"/>
-    
-    Новая заметка
-  </Btn>
-
   <LazyNoteAddModal 
     v-if="isAddShown"
     v-model="isAddShown"
   />
 </template>
 
-<style lang="scss" scoped>
+<style lang="sass" scoped>
+.nodeList
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-auto-rows: minmax(100px, auto)
+  gap: 10px
+  max-width: 620px
+  margin-bottom: 10px
 
+  & > div:nth-child(4n + 3)
+    grid-row: span 2
+
+  // & > div:nth-child(3n + 2)
+  //   grid-row: span 2
+.newNote
+  position: sticky
 </style>

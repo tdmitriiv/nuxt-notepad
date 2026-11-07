@@ -31,10 +31,10 @@ const {
   deleteTask,
   updateTask,
   toggleTask,
-  undoHistory,
-  redoHistory,
   undo,
-  redo
+  redo,
+  undoHistory,
+  redoHistory
 } = useNoteTasks(noteForm)
 </script>
 
@@ -42,6 +42,7 @@ const {
   <div class="noteForm">
     <ContentEditable
       placeholder="Наименование заметки"
+      class="noteForm__name"
       v-model="noteForm.name"
     />
 
@@ -75,14 +76,39 @@ const {
       />
     </div>
 
-    <Btn
-      @click="addTask()"
-    >
-      Новая задача
-    </Btn>
-
-    <div>
+    <div class="noteForm__buttons">
       <Btn
+        v-show="isEdit"
+        :disabled="!undoHistory.length"
+        variant="success"
+        title="Вернуть назад"
+        @click="undo"
+      >
+        <AppIcon name="pixelarticons:undo-sharp" />
+      </Btn>
+      
+      <Btn
+        title="Новая задача"
+        @click="addTask()"
+      >
+        <AppIcon 
+          name="pixelarticons:plus"
+          class="noteForm__add"
+        />
+      </Btn>
+
+      <Btn
+        v-show="isEdit"
+        :disabled="!redoHistory.length"
+        variant="error"
+        title="Перейти вперед"
+        @click="redo"
+      >
+        <AppIcon name="pixelarticons:redo-sharp" />
+      </Btn>
+
+      <Btn
+        variant="success"
         @click="emit('submit', noteForm)"
       >
         {{ isEdit ? 'Изменить' : 'Добавить' }}
@@ -90,53 +116,46 @@ const {
 
       <Btn
         v-show="isEdit"
+        variant="error"
         @click="emit('delete', noteForm)"
       >
-        Удалить
+        <AppIcon name="pixelarticons:trash" />
       </Btn>
 
       <Btn
         v-show="isEdit"
+        title="Отменить"
         @click="emit('cancel')"
       >
-        Отменить
+        <AppIcon name="pixelarticons:chevron-left" />
       </Btn>
-
-      <Btn
-      v-show="isEdit"
-      @click="undo"
-    >
-      undo
-    </Btn>
-
-    <Btn
-      v-show="isEdit"
-      @click="redo"
-    >
-      redo
-    </Btn>
-    <div 
-      v-show="isEdit"
-      style="flex"
-    >
-      <pre>
-        {{ undoHistory }}
-      </pre>
-      <pre>
-        {{ redoHistory }}
-      </pre>
-    </div>
     </div>
   </div>
 </template>
 
 <style lang="sass" scoped>
 .noteForm
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+  &__name
+    font-size: 18px
+    font-weight: bold
+
   &__task
     display: flex
     align-items: center
+    gap: 5px
 
   &__delete,
   &__add
     cursor: pointer
+
+  &__buttons
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: 10px
+    margin-top: 10px
 </style>

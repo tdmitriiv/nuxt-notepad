@@ -41,19 +41,24 @@ useHead({
 </script>
 
 <template>
-  <div 
-    v-if="note"
-    class="note"
-  >
-    <NoteForm 
-      :note="note"
-      @submit="onUpdate"
-      @delete="onDelete"
-      @cancel="onCancel"
-    />
-  </div>
+  <NuxtLayout>
+    <template #header>
 
-  <ConfirmModal />
+    </template>
+    <div 
+      v-if="note"
+      class="note"
+    >
+      <NoteForm 
+        :note="note"
+        @submit="onUpdate"
+        @delete="onDelete"
+        @cancel="onCancel"
+      />
+    </div>
+
+    <ConfirmModal />
+  </NuxtLayout>
 </template>
 
 <style lang="sass" scoped>
