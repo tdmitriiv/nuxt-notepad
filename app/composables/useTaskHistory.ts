@@ -42,7 +42,8 @@ export type HistoryItem = {
 }
 
 export default function useTaskHistory (
-  tasks: Ref<NoteTask[]>
+  tasks: Ref<NoteTask[]>,
+  limit = 50
 ) {
   const undoHistory = shallowRef<HistoryItem[]>([])
   const redoHistory = shallowRef<HistoryItem[]>([])
@@ -108,6 +109,10 @@ export default function useTaskHistory (
 
     if (redoHistory.value.length) {
       redoHistory.value = []
+    }
+
+    if (undoHistory.value.length > limit) {
+      undoHistory.value.splice(0, undoHistory.value.length - limit)
     }
   }
 
