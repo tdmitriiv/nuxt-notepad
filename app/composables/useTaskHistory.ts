@@ -103,6 +103,14 @@ export default function useTaskHistory (
     }
   }
 
+  const processCommand = (command: TaskCommand) => {
+    execute(command)
+
+    if (redoHistory.value.length) {
+      redoHistory.value = []
+    }
+  }
+
   const processHistory = (fromHistory = undoHistory, toHistory = redoHistory) => {
     const command = fromHistory.value.pop()
 
@@ -158,7 +166,7 @@ export default function useTaskHistory (
   }
 
   return {
-    execute,
+    processCommand,
     undo,
     redo,
     undoHistory,

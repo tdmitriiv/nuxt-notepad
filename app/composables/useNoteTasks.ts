@@ -3,7 +3,7 @@ import useTaskHistory from '~/composables/useTaskHistory'
 export default function useNotaTasks (note: Ref<NoteItem>) {
   const tasks = computed(() => note.value.tasks)
 
-  const { execute, redo, undo, undoHistory, redoHistory } = useTaskHistory(tasks)
+  const { processCommand, redo, undo, undoHistory, redoHistory } = useTaskHistory(tasks)
 
   const addTask = (index?: number) => {
     const newTask: NoteTask = {
@@ -12,7 +12,7 @@ export default function useNotaTasks (note: Ref<NoteItem>) {
       name: ''
     }
 
-    execute({
+    processCommand({
       type: 'add',
       params: {
         value: newTask,
@@ -22,7 +22,7 @@ export default function useNotaTasks (note: Ref<NoteItem>) {
   }
 
   const deleteTask = (index: number) => {
-    execute({
+    processCommand({
       type: 'delete',
       params: {
         index
@@ -31,7 +31,7 @@ export default function useNotaTasks (note: Ref<NoteItem>) {
   }
 
   const updateTask = useDebounceFn((value: string, index: number) => {
-    execute({
+    processCommand({
       type: 'change',
       params: {
         index,
@@ -41,7 +41,7 @@ export default function useNotaTasks (note: Ref<NoteItem>) {
   }, 500)
 
   const toggleTask = (value: boolean, index: number) => {
-    execute({
+    processCommand({
       type: 'toggle',
       params: {
         index,
