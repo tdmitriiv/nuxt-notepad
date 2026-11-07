@@ -1,10 +1,8 @@
 export const useNoteStore = defineStore('notes', {
   state: (): {
     notes: NoteItem[]
-    hydrated: boolean
   } => ({
-    notes: [],
-    hydrated: false
+    notes: []
   }),
   actions: {
     setNotes (notes: NoteItem[]) {

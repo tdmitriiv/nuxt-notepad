@@ -42,6 +42,7 @@ const toggleCheck = () => {
 
 <style lang="sass" scoped>
 .checkbox
+  display: inline-flex
   width: 20px
   height: 20px
 

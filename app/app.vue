@@ -1,3 +1,6 @@
 <template>
-  <NuxtPage keepalive />
+  <NuxtLayout>
+    <NuxtPage keepalive />
+  </NuxtLayout>
 </template>
+

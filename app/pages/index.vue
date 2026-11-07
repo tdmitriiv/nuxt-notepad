@@ -13,11 +13,19 @@ const showAddModal = () => {
 </script>
 
 <template>
-  <NoteCard
-    v-for="(note, noteIndex) of notes"
-    :key="`noteItem-${noteIndex}`"
-    :note="note"
-  />
+  <ClientOnly>
+    <NoteCard
+      v-for="(note, noteIndex) of notes"
+      :key="`noteItem-${noteIndex}`"
+      :note="note"
+    />
+
+    <template #fallback>
+      <div class="skeleton-wrapper">
+        <div class="skeleton-bar" style="height: 200px;"></div>
+      </div>
+    </template>
+  </ClientOnly>
 
   <Btn @click="showAddModal">
     <Icon name="pixelarticons:notes-plus"/>

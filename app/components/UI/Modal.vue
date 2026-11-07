@@ -14,7 +14,6 @@ const modalRef = useTemplateRef('modal')
 const { activate, deactivate } = useFocusTrap(modalRef, { immediate: false })
 
 onMounted(async () => {
-  console.log('onMounted')
   await nextTick()
   activate()
 })
