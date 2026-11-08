@@ -61,8 +61,10 @@ useHead({
   </NuxtLayout>
 </template>
 
-<style lang="sass" scoped>
-.note
-  &__list
+<style lang="scss" scoped>
+.note {
+  &__list {
     display: flex
+  } 
+}
 </style>

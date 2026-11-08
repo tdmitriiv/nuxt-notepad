@@ -22,14 +22,17 @@ const onEnter = (event: Event) => {
   </span>
 </template>
 
-<style lang="sass" scoped>
-.icon
-  display: inline-block
-  cursor: pointer
+<style lang="scss" scoped>
+.icon {
+  display: inline-block;
+  cursor: pointer;
 
-  &:focus
-    outline: none
+  &:focus {
+    outline: none;
 
-    > span
-      background: green
+    > span {
+      background: green;
+    }
+  } 
+}
 </style>

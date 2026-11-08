@@ -1,0 +1,18 @@
+:root,
+[data-theme="light"] {
+  --color-bg: #{$color-body};
+  --color-text: #{$color-black};
+  --color-muted: #{$color-grey};
+  --color-border: #{$color-grey};
+  --color-btn: #{$color-white};
+  --bgcolor-btn: #{$color-black};
+  --color-green: #{$color-lime};
+  --color-red: #{$color-peach};
+}
+
+[data-theme="dark"] {
+  --color-bg: #{$color-black};
+  --color-text: #{$color-white};
+  --color-muted: #{$color-grey};
+  --color-border: #{$color-grey};
+}

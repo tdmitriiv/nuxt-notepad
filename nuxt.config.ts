@@ -8,13 +8,16 @@ export default defineNuxtConfig({
   },
   css: [
     'normalize.css/normalize.css',
-    '~/assets/styles/index.sass'
+    '~/assets/styles/index.scss'
   ],
   vite: {
     css: {
       preprocessorOptions: {
-        sass: {
-          additionalData: '@use "~/assets/styles/variables/_index.sass" as *\n',
+        scss: {
+          additionalData: `
+            @use "~/assets/styles/variables/_index.scss" as *;
+            @use "~/assets/styles/mixins/_media.scss" as *;
+          `
         }
       }
     }

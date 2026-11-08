@@ -40,23 +40,28 @@ const toggleCheck = () => {
   </span>
 </template>
 
-<style lang="sass" scoped>
-.checkbox
-  display: inline-flex
-  width: 20px
-  height: 20px
+<style lang="scss" scoped>
+.checkbox {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
 
-  input
-    display: none
+  input {
+    display: none;
+  }
 
-  &--disabled
-    color: var(--color-muted)
+  &--disabled {
+    color: var(--color-muted);
+  }
 
   &__on,
-  &__off
-    display: none
+  &__off {
+    display: none;
+  }
 
   &:not(&--checked) &__off,
-  &--checked &__on
-    display: inline-block
+  &--checked &__on {
+    display: inline-block;
+  }
+}
 </style>

@@ -133,29 +133,34 @@ const {
   </div>
 </template>
 
-<style lang="sass" scoped>
-.noteForm
-  display: flex
-  flex-direction: column
-  gap: 8px
+<style lang="scss" scoped>
+.noteForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-  &__name
-    font-size: 18px
-    font-weight: bold
+  &__name {
+    font-size: 18px;
+    font-weight: bold;
+  }
 
-  &__task
-    display: flex
-    align-items: center
-    gap: 5px
+  &__task {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 
   &__delete,
-  &__add
-    cursor: pointer
+  &__add {
+    cursor: pointer;
+  }
 
-  &__buttons
-    display: flex
-    align-items: center
-    flex-wrap: wrap
-    gap: 10px
-    margin-top: 10px
+  &__buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
 </style>

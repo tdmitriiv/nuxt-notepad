@@ -62,29 +62,32 @@ onKeyStroke('Escape', close)
   </Teleport>
 </template>
 
-<style lang="sass" scoped>
-.modal
-  position: fixed
-  top: 0
-  left: 0
-  width: 100vw
-  height: 100vh
-  background-color: rgba(255, 255, 255, 0.3)
-  display: flex
-  justify-content: center
-  align-items: center
-  z-index: 9999
+<style lang="scss" scoped>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 
-  &__content
-    position: relative
-    background: white
-    padding: 20px
-    border: 1px solid var(--color-border)
-    border-radius: 2px
-    min-width: 300px
+  &__content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    min-width: 300px;
+  }
 
-  &__close
-    position: absolute
-    top: 10px
-    right: 10px
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
 </style>

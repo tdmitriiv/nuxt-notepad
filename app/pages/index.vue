@@ -43,20 +43,33 @@ const showAddModal = () => {
   />
 </template>
 
-<style lang="sass" scoped>
-.nodeList
-  display: grid
-  grid-template-columns: repeat(3, 1fr)
-  grid-auto-rows: minmax(100px, auto)
-  gap: 10px
-  max-width: 620px
-  margin-bottom: 10px
+<style lang="scss" scoped>
+.nodeList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  gap: 10px;
+  max-width: 620px;
+  margin-bottom: 10px;
 
-  & > div:nth-child(4n + 3)
-    grid-row: span 2
+  & > div:nth-child(3n + 2) {
+    grid-row: span 2;
+  }
 
-  // & > div:nth-child(3n + 2)
-  //   grid-row: span 2
-.newNote
-  position: sticky
+  @include screen(md) {
+    grid-template-columns: repeat(3, 1fr);
+
+    & > div:nth-child(3n + 2) {
+      grid-row: span 1;
+    }
+
+    & > div:nth-child(4n + 3) {
+      grid-row: span 2;
+    }
+  }
+}
+
+.newNote {
+  position: sticky;
+}
 </style>

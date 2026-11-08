@@ -31,22 +31,25 @@ const { note } = defineProps<{
   </div>
 </template>
 
-<style lang="sass" scoped>
-.noteCard
-  display: flex
-  flex-direction: column
-  gap: 5px
-  padding: $spacing
-  border: 1px solid var(--color-border)
-  border-radius: $borderRadius
+<style lang="scss" scoped>
+.noteCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: $spacing;
+  border: 1px solid var(--color-border);
+  border-radius: $borderRadius;
 
-  &__name
-    color: var(--color-text)
-    font-weight: bold
-    text-decoration: none
+  &__name {
+    color: var(--color-text);
+    font-weight: bold;
+    text-decoration: none;
+  }
 
-  &__task
-    display: flex
-    align-items: center
-    gap: 5px
+  &__task {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
 </style>
