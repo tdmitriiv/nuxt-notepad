@@ -1,75 +1,25 @@
-# Nuxt Minimal Starter
+# Nuxt notepad
+- [x] Pinia 
+  - [x] Pinia persistance pluign
+  - [x] обновление Pinia после изменения данных на новой вкладке
+- [x] История изменений задач
+  - [x] Сброс redo после изменения
+  - [x] Лимит истории изменений
+  - [x] Тесты истории изменения
+  - [x] debounce изменения текста задачи
+- [x] Черновик
+  - [x] Сохранение / восстановление / удаление черновика
+  - [x] debounce сохранения черновика
+- [x] Общее окно подтверждения, composable useConfirm()
+- [x] Обработка несуществующей заметки
+- [x] Добавление / изменение / удаление заметки и задач
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
-
+## Запуск в docker
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+docker-compose up --build
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+## Unit тест
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+pnpm run test
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
