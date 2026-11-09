@@ -10,6 +10,7 @@ body {
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: calc($spacing / 2);
 }
 

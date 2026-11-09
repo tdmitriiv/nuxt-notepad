@@ -1,15 +1,7 @@
 <script setup lang="ts">
 import NoteCard from '~/components/NoteCard.vue'
-import Btn from '~/components/UI/Btn.vue'
-import useNotes from '~/composables/useNotes'
 
 const { notes, deleteNote } = useNotes()
-
-const isAddShown = shallowRef(false)
-
-const showAddModal = () => {
-  isAddShown.value = true
-}
 
 const onNoteDelete = async (note: NoteItem) => {
   await useConfirm({
@@ -21,14 +13,6 @@ const onNoteDelete = async (note: NoteItem) => {
 </script>
 
 <template>
-  <Btn
-    class="newNote"
-    title="Добавить заметку"
-    @click="showAddModal"
-  >
-    <Icon name="pixelarticons:notes-plus"/>
-  </Btn>
-
   <ClientOnly>
     <div class="nodeList">
       <NoteCard
@@ -45,11 +29,6 @@ const onNoteDelete = async (note: NoteItem) => {
       </div>
     </template>
   </ClientOnly>
-
-  <LazyNoteAddModal 
-    v-if="isAddShown"
-    v-model="isAddShown"
-  />
 </template>
 
 <style lang="scss" scoped>
@@ -76,9 +55,5 @@ const onNoteDelete = async (note: NoteItem) => {
       grid-row: span 2;
     }
   }
-}
-
-.newNote {
-  position: sticky;
 }
 </style>
