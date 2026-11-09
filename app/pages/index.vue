@@ -34,14 +34,17 @@ const onNoteDelete = async (note: NoteItem) => {
 <style lang="scss" scoped>
 .nodeList {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: minmax(100px, auto);
   gap: 10px;
   max-width: 620px;
   margin-bottom: 10px;
 
-  & > div:nth-child(3n + 2) {
-    grid-row: span 2;
+  @include screen(sm) {
+    grid-template-columns: repeat(2, 1fr);
+
+    & > div:nth-child(3n + 2) {
+      grid-row: span 2;
+    }
   }
 
   @include screen(md) {

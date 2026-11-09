@@ -25,14 +25,15 @@ const isHomePage = computed(() => {
         >
       </NuxtLink>
 
-      <Btn
+      <div
         v-if="isHomePage"
         class="newNote"
-        title="Добавить заметку"
         @click="showAddModal"
       >
         <AppIcon name="pixelarticons:notes-plus" />
-      </Btn>
+        
+        Добавить заметку
+      </div>
     </header>
     <main class="container">
       <slot />
@@ -48,4 +49,9 @@ const isHomePage = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.newNote {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 </style>

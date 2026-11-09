@@ -70,8 +70,8 @@ const onNoteDelete = () => {
 
   &__delete {
     position: absolute;
-    top: 5px;
     right: 5px;
+    bottom: 5px;
   }
 }
 </style>
