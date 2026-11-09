@@ -51,7 +51,7 @@ export default function useTaskHistory (
   const execute = (command: TaskCommand, history = undoHistory) => {
     switch (command.type) {
       case 'add': {
-        const addIndex = command.params.index ?? tasks.value.length
+        const addIndex = command.params.index ? command.params.index + 1 : tasks.value.length
         tasks.value.splice(addIndex, 0, command.params.value)
         history.value.push({
           type: command.type,
