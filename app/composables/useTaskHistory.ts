@@ -51,7 +51,7 @@ export default function useTaskHistory (
   const execute = (command: TaskCommand, history = undoHistory) => {
     switch (command.type) {
       case 'add': {
-        const addIndex = command.params.index ? command.params.index + 1 : tasks.value.length
+        const addIndex = typeof command.params.index !== 'undefined' ? command.params.index + 1 : tasks.value.length
         tasks.value.splice(addIndex, 0, command.params.value)
         history.value.push({
           type: command.type,
@@ -170,11 +170,17 @@ export default function useTaskHistory (
     processHistory(redoHistory, undoHistory)
   }
 
+  const reset = () => {
+    redoHistory.value = []
+    undoHistory.value = []
+  }
+
   return {
     processCommand,
     undo,
     redo,
     undoHistory,
-    redoHistory
+    redoHistory,
+    reset
   }
 }
