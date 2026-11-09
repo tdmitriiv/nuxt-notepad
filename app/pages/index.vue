@@ -3,11 +3,7 @@ import NoteCard from '~/components/NoteCard.vue'
 
 const { notes, deleteNote } = useNotes()
 
-const onNoteDelete = async (note: NoteItem) => {
-  await useConfirm({
-    title: 'Подтвердите удаление',
-    description: note.name
-  })
+const onNoteDelete = (note: NoteItem) => {
   deleteNote(note)
 }
 </script>
