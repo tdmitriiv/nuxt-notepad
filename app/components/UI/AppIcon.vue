@@ -11,7 +11,7 @@ const onEnter = (event: Event) => {
 
 <template>
   <span 
-    class="icon"
+    class="appIcon"
     tabindex="0"
     @keypress.enter="onEnter"
   >
@@ -23,7 +23,7 @@ const onEnter = (event: Event) => {
 </template>
 
 <style lang="scss" scoped>
-.icon {
+.appIcon {
   display: inline-block;
   cursor: pointer;
 
