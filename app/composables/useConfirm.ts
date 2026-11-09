@@ -1,11 +1,12 @@
-export default function useConfirm (title = '') {
+export default function useConfirm (data: Omit<ConfirmData, 'resolve' | 'reject'>) {
   const confirmBus = useEventBus<ConfirmData>('confirm')
 
   return new Promise((resolve, reject) => {
     confirmBus.emit({
       resolve,
       reject,
-      title
+      title: data.title,
+      description: data.description || ''
     })
   })
 }

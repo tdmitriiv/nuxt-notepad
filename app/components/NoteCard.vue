@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import Checkbox from '~/components/UI/Checkbox.vue'
+import AppIcon from '~/components/UI/AppIcon.vue'
 
 const { note } = defineProps<{
   note: NoteItem
 }>()
+
+const emit = defineEmits<{
+  delete: [value: NoteItem]
+}>()
+
+const onNoteDelete = () => {
+  emit('delete', note)
+}
 </script>
 
 <template>
@@ -28,11 +37,18 @@ const { note } = defineProps<{
       
       {{ task.name }}
     </div>
+
+    <AppIcon 
+      name="pixelarticons:trash"
+      class="noteCard__delete"
+      @click="onNoteDelete"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .noteCard {
+  position:  relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -50,6 +66,12 @@ const { note } = defineProps<{
     display: flex;
     align-items: center;
     gap: 5px;
+  }
+
+  &__delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
   }
 }
 </style>

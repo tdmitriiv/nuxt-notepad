@@ -10,6 +10,8 @@ const confirmBus = useEventBus<ConfirmData>('confirm')
 
 const title = computed(() => confirmData.value?.title)
 
+const description = computed(() => confirmData.value?.description)
+
 confirmBus.on((data) => {
   confirmData.value = data
   isOpen.value = true
@@ -38,8 +40,41 @@ const decline = () => {
   <Modal 
     v-model="isOpen"
     :title="title"
+    class="confirmModal"
   >
-    <Btn @click="confirm">Да</Btn>
-    <Btn @click="decline">Нет</Btn>
+    <div class="confirmModal__content">
+      <div class="confirmModal__description">
+        {{ description }}
+      </div>
+
+      <div class="confirmModal__buttons">
+        <Btn 
+          variant="success"
+          @click="confirm"
+        >
+          Да
+        </Btn>
+        <Btn 
+          variant="error"
+          @click="decline"
+        >
+          Нет
+        </Btn>
+      </div>
+    </div>
   </Modal>
 </template>
+
+<style lang="scss" scoped>
+.confirmModal {
+  &__description {
+    color: var(--color-muted);
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+</style>

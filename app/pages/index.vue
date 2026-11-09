@@ -3,12 +3,20 @@ import NoteCard from '~/components/NoteCard.vue'
 import Btn from '~/components/UI/Btn.vue'
 import useNotes from '~/composables/useNotes'
 
-const { notes } = useNotes()
+const { notes, deleteNote } = useNotes()
 
 const isAddShown = shallowRef(false)
 
 const showAddModal = () => {
   isAddShown.value = true
+}
+
+const onNoteDelete = async (note: NoteItem) => {
+  await useConfirm({
+    title: 'Подтвердите удаление',
+    description: note.name
+  })
+  deleteNote(note)
 }
 </script>
 
@@ -27,6 +35,7 @@ const showAddModal = () => {
         v-for="(note, noteIndex) of notes"
         :key="`noteItem-${noteIndex}`"
         :note="note"
+        @delete="onNoteDelete"
       />
     </div>
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ConfirmModal from '~/components/modals/ConfirmModal.vue'
 </script>
 
 <template>
@@ -15,6 +16,8 @@
     <main class="container">
       <slot />
     </main>
+
+    <ConfirmModal />
   </div>
 </template>
 

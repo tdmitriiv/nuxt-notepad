@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ConfirmModal from '~/components/modals/ConfirmModal.vue'
-
 const { fetchNote, editNote, deleteNote } = useNotes()
 const route = useRoute()
 const router = useRouter()
@@ -30,7 +28,9 @@ const onDelete = async (note: NoteItem) => {
 
 const onCancel = async () => {
   try {
-    await useConfirm('Подтвердить отмену?')
+    await useConfirm({
+      title: 'Подтвердить отмену?'
+    })
     router.push('/')
   } catch {}
 }
@@ -52,8 +52,6 @@ useHead({
       @cancel="onCancel"
     />
   </div>
-
-  <ConfirmModal />
 </template>
 
 <style lang="scss" scoped>
