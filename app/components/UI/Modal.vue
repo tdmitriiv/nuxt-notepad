@@ -2,6 +2,10 @@
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import AppIcon from '~/components/UI/AppIcon.vue'
 
+defineOptions({
+  inheritAttrs: false
+})
+
 const { title } = defineProps<{
   modelValue: boolean
   title?: string
@@ -38,6 +42,7 @@ onKeyStroke('Escape', close)
         v-if="isOpen"
         ref="modal"
         class="modal"
+        v-bind="$attrs"
         @click.stop="close"
       >
         <div
