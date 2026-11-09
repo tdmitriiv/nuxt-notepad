@@ -21,6 +21,7 @@ const noteDraft = useDraft<NoteItem>('note' + route.params.id)
 onMounted (async () => {
   const draft = noteDraft.getDraft()
   if (draft) {
+    await nextTick()
     await useConfirm({ title: 'Восстановить черновик?' })
     note.value = draft
   }
