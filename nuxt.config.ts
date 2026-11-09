@@ -4,7 +4,12 @@ const sassAdditionalData =
   '@use "~/assets/styles/mixins/_media.scss" as *;\n';
 
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/icon/module'],
+  modules: [
+    '@pinia/nuxt',
+    '@vueuse/nuxt',
+    '@nuxt/icon/module',
+    '@nuxt/test-utils/module'
+  ],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   routeRules: {
