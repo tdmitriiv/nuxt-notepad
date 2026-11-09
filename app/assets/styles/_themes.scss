@@ -1,3 +1,5 @@
+@use 'variables/index' as *;
+
 :root,
 [data-theme="light"] {
   --color-bg: #{$color-body};

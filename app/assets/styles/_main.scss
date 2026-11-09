@@ -1,3 +1,5 @@
+@use 'variables/index' as *; 
+
 html {
   color: var(--color-text);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;

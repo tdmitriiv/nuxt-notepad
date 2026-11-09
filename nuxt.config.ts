@@ -1,4 +1,8 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+
+const sassAdditionalData =
+  '@use "~/assets/styles/variables/_index.scss" as *;\n' +
+  '@use "~/assets/styles/mixins/_media.scss" as *;\n';
+
 export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxt/icon/module'],
   compatibilityDate: '2025-07-15',
@@ -14,10 +18,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `
-            @use "~/assets/styles/variables/_index.scss" as *;
-            @use "~/assets/styles/mixins/_media.scss" as *;
-          `
+          additionalData: sassAdditionalData
         }
       }
     }
