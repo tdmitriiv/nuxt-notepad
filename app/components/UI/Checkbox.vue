@@ -54,8 +54,8 @@ const toggleCheck = () => {
     color: var(--color-muted);
   }
 
-  &__on,
-  &__off {
+  & &__on,
+  & &__off {
     display: none;
   }
 
