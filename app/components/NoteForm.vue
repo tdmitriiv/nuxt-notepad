@@ -36,6 +36,12 @@ const {
   undoHistory,
   redoHistory
 } = useNoteTasks(noteForm)
+
+watch(() => note, (noteUpdated) => {
+  if (!noteUpdated) { return }
+
+  noteForm.value = noteUpdated
+})
 </script>
 
 <template>

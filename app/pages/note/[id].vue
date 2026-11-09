@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { UnwrapRef } from 'vue'
+
 const { fetchNote, editNote, deleteNote } = useNotes()
 const route = useRoute()
 const router = useRouter()
@@ -14,14 +16,27 @@ if (!note.value) {
   })
 }
 
+const noteDraft = useDraft<NoteItem>('note' + route.params.id)
+
+onMounted (async () => {
+  const draft = noteDraft.getDraft()
+  if (draft) {
+    await useConfirm({ title: 'Восстановить черновик?' })
+    note.value = draft
+  }
+})
+
 const onUpdate = (note: NoteItem) => {
   editNote(note)
+  noteDraft.deleteDraft()
+
   router.push('/')
 }
 
 const onDelete = async (note: NoteItem) => {
   try {
     await deleteNote(note)
+    noteDraft.deleteDraft()
     router.push('/')
   } catch {}
 }
@@ -34,6 +49,16 @@ const onCancel = async () => {
     router.push('/')
   } catch {}
 }
+
+const draftNote = useDebounceFn((value: UnwrapRef<typeof note>) => {
+  noteDraft.saveDraft(value)
+}, 500)
+
+watch(note, (newNote) => {
+  draftNote(newNote)
+}, {
+  deep: true
+})
 
 useHead({
   title: note.value.name

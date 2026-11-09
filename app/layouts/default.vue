@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import ConfirmModal from '~/components/modals/ConfirmModal.vue'
 import AppIcon from '~/components/UI/AppIcon.vue'
-import Btn from '~/components/UI/Btn.vue'
 
 const isAddShown = shallowRef(false)
 
